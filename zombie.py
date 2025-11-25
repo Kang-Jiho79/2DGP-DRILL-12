@@ -190,5 +190,5 @@ class Zombie:
         chase = Sequence('Chase', c2, a3)
         chase_or_flee = Selector('Chase or Flee', chase, a4)
         chase_or_flee_boy = Sequence('Chase or Flee boy', c1, chase_or_flee)
-
+        root = Selector('Root', chase_or_flee_boy, wander)
         # self.bt = BehaviorTree(root)
