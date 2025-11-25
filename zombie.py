@@ -188,4 +188,6 @@ class Zombie:
         a3 = Action("Move to boy", self.move_to_boy)
         a4 = Action("Flee to boy", self.flee_to_boy)
         chase = Sequence('Chase', c2, a3)
+        chase_or_flee = Selector('Chase or Flee', chase, a4)
+
         # self.bt = BehaviorTree(root)
