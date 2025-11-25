@@ -162,6 +162,8 @@ class Zombie:
         else:
             return BehaviorTree.FAIL
 
+    def flee_to_boy(self, r=0.5):
+        pass
 
     def build_behavior_tree(self):
         # 여기를 채우시오.
@@ -173,5 +175,6 @@ class Zombie:
         c1 = Condition("Is nearby boy", self.is_boy_nearby, 7)
         c2 = Condition("has more than boy's ball", self.has_more_balls_than_boy)
         a3 = Action("Move to boy", self.move_to_boy)
+        a4 = Action("Wander", self.flee_to_boy)
 
         # self.bt = BehaviorTree(root)
