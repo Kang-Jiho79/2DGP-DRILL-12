@@ -186,6 +186,6 @@ class Zombie:
         c1 = Condition("Is nearby boy", self.is_boy_nearby, 7)
         c2 = Condition("has more than boy's ball", self.has_more_balls_than_boy)
         a3 = Action("Move to boy", self.move_to_boy)
-        a4 = Action("Wander", self.flee_to_boy)
-
+        a4 = Action("Flee to boy", self.flee_to_boy)
+        chase = Sequence('Chase', c2, a3)
         # self.bt = BehaviorTree(root)
