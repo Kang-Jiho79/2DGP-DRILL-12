@@ -163,7 +163,18 @@ class Zombie:
             return BehaviorTree.FAIL
 
     def flee_to_boy(self, r=0.5):
-        pass
+        # 여기를 채우시오.
+        self.state = 'Walk'
+        distance = RUN_SPEED_PPS * game_framework.frame_time
+        self.dir = math.atan2(self.y - common.boy.y, self.x - common.boy.x)
+        self.x += distance * math.cos(self.dir)
+        self.y += distance * math.sin(self.dir)
+        if self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y, r):
+            self.state = 'Idle'
+            return BehaviorTree.FAIL
+        else:
+            return BehaviorTree.RUNNING
+
 
     def build_behavior_tree(self):
         # 여기를 채우시오.
