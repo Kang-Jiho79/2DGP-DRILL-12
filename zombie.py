@@ -156,25 +156,19 @@ class Zombie:
         self.loc_no = (self.loc_no + 1) % len(self.patrol_locations)
         return BehaviorTree.SUCCESS
 
+    def has_more_balls_than_boy(self):
+        pass
+
 
     def build_behavior_tree(self):
         # 여기를 채우시오.
 
-        # 목표지정을 설정하는 액션 노드를 생성
-        a1 = Action("Set target location", self.set_target_location,1000,1000)
-        # 목표지점까지 이동하는 액션 노드를 생성
-        a2 = Action("Move to target", self.move_to,0.5)
-        move_to_target_location = Sequence('Move to target location', a1, a2)
-
-        a3 = Action("Set random location", self.set_random_location)
-        wander = Sequence('Wander', a3, a2)
+        a1 = Action("Set random location", self.set_random_location)
+        a2 = Action("Move to target", self.move_to)
+        wander = Sequence('Wander', a1, a2)
 
         c1 = Condition("Is nearby boy", self.is_boy_nearby, 7)
-        a4 = Action("Move to boy", self.move_to_boy)
-        chase_boy_if_nearby = Sequence('Chase boy', c1, a4)
+        c2 = Condition("has more than boy's ball", self.has_more_balls_than_boy)
+        a3 = Action("Move to boy", self.move_to_boy)
 
-        a5 = Action("Get patrol location", self.get_patrol_location)
-        patrol = Sequence('Patrol', a5, a2)
-
-        root = chase_if_boy_near_or_patrol = Selector('Chase or Patrol', chase_boy_if_nearby, patrol)
-        self.bt = BehaviorTree(root)
+        # self.bt = BehaviorTree(root)
